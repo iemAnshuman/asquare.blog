@@ -3,7 +3,7 @@ title: Use - Anthony Fu
 display: Use
 subtitle: Things I am using
 description: Things I am using
-art: dots
+art: plum
 ---
 
 [[toc]]

@@ -6,12 +6,15 @@ import fs from 'fs-extra'
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 
-const DOMAIN = 'https://antfu.me'
+// --- YOUR SITE CONFIG ---
+const DOMAIN = 'https://asquare.blog' // change if you deploy under a different domain
 const AUTHOR = {
-  name: 'Anthony Fu',
-  email: 'hi@antfu.me',
+  name: 'Anshuman Agrawal',
+  email: 'asquare567@gmail.com', // optional — remove if you don’t want email in the feed
   link: DOMAIN,
 }
+// ------------------------
+
 const markdown = MarkdownIt({
   html: true,
   breaks: true,
@@ -25,30 +28,34 @@ async function run() {
 async function buildBlogRSS() {
   const files = await fg('pages/posts/*.md')
 
-  const options = {
-    title: 'Anthony Fu',
-    description: 'Anthony Fu\' Blog',
-    id: 'https://antfu.me/',
-    link: 'https://antfu.me/',
-    copyright: 'CC BY-NC-SA 4.0 2021 © Anthony Fu',
+  const options: FeedOptions = {
+    title: 'Anshuman Agrawal',
+    description: 'Notes, projects, and research logs',
+    id: `${DOMAIN}/`,
+    link: `${DOMAIN}/`,
+    copyright: 'CC BY-NC-SA 4.0',
     feedLinks: {
-      json: 'https://antfu.me/feed.json',
-      atom: 'https://antfu.me/feed.atom',
-      rss: 'https://antfu.me/feed.xml',
+      json: `${DOMAIN}/feed.json`,
+      atom: `${DOMAIN}/feed.atom`,
+      rss: `${DOMAIN}/feed.xml`,
     },
   }
+
   const posts: any[] = (
     await Promise.all(
-      files.filter(i => !i.includes('index'))
+      files
+        .filter(i => !i.includes('index'))
         .map(async (i) => {
           const raw = await fs.readFile(i, 'utf-8')
           const { data, content } = matter(raw)
 
-          if (data.lang !== 'en')
+          // keep only English posts; adjust if you publish multilingual content
+          if (data.lang && data.lang !== 'en')
             return
 
           const html = markdown.render(content)
-            .replace('src="/', `src="${DOMAIN}/`)
+            // convert root-relative asset paths to absolute
+            .replace(/src="\//g, `src="${DOMAIN}/`)
 
           if (data.image?.startsWith('/'))
             data.image = DOMAIN + data.image
@@ -58,11 +65,11 @@ async function buildBlogRSS() {
             date: new Date(data.date),
             content: html,
             author: [AUTHOR],
-            link: DOMAIN + i.replace(/^pages(.+)\.md$/, '$1'),
+            link: `${DOMAIN}${i.replace(/^pages(.+)\.md$/, '$1')}`,
           }
         }),
-    ))
-    .filter(Boolean)
+    )
+  ).filter(Boolean)
 
   posts.sort((a, b) => +new Date(b.date) - +new Date(a.date))
 
@@ -71,13 +78,12 @@ async function buildBlogRSS() {
 
 async function writeFeed(name: string, options: FeedOptions, items: Item[]) {
   options.author = AUTHOR
-  options.image = 'https://antfu.me/avatar.png'
-  options.favicon = 'https://antfu.me/logo.png'
+  options.image = `${DOMAIN}/avatar.png` // ensure these exist in /public
+  options.favicon = `${DOMAIN}/asquare_black.png`
 
   const feed = new Feed(options)
 
   items.forEach(item => feed.addItem(item))
-  // items.forEach(i=> console.log(i.title, i.date))
 
   await fs.ensureDir(dirname(`./dist/${name}`))
   await fs.writeFile(`./dist/${name}.xml`, feed.rss2(), 'utf-8')

@@ -2,11 +2,11 @@
 title: Let's Chat - Anthony Fu
 display: Let's Chat!
 image: https://antfu.me/og-chat.png
-art: dots
+art: plum
 ---
 
 > [!IMPORTANT]
-> I am sorry I am currently busy on my personal changes and **NOT available for chat**. Feel free to interact with me on [Bluesky](https://bsky.app/profile/antfu.me) instead. I will be back soon! Thank you for your understanding.
+> I am sorry I am currently busy on my personal changes and **NOT available for chat**. Feel free to interact with me on [Bluesky](https://bsky.app/profile) instead. I will be back soon! Thank you for your understanding.
 
 [中文 Chinese](/chat-zh)
 

@@ -1,36 +1,40 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router/auto'
-import { englishOnly } from '../logics'
-
-const inactiveStyle = 'opacity-20 hover:opacity-50'
-const activeStyle = 'opacity-100 underline'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
+
+const activeStyle
+  = 'text-(black dark:white) font-semibold border-b-2 border-(black dark:white)'
+const inactiveStyle
+  = 'text-(gray-600 dark:gray-300) hover:text-(black dark:white)'
+
+function linkClass(prefix: string) {
+  // Active if the current path equals or starts with the link prefix
+  return route.path === prefix || route.path.startsWith(`${prefix}/`)
+    ? activeStyle
+    : inactiveStyle
+}
 </script>
 
 <template>
-  <div class="prose m-auto mb-8 select-none animate-none! op100!">
-    <button flex="~ gap1" items-center mb2 op30 text-sm @click="englishOnly = !englishOnly">
-      <div :i="englishOnly ? 'carbon-checkbox-checked' : 'carbon-checkbox'" />
-      English Only
-    </button>
+  <nav class="flex items-center gap-4 md:gap-6 border-b border-(gray-200 dark:gray-800) pb-3 mb-6">
+    <!-- Keep this lean: Blog + Notes only (no Podcasts, no Streams) -->
+    <RouterLink
+      to="/posts"
+      :class="linkClass('/posts')"
+      class="!border-none"
+      title="Blog"
+    >
+      Blog
+    </RouterLink>
 
-    <div mb-0 flex="~ col gap-1 sm:row sm:gap-3 wrap" text-3xl>
-      <RouterLink to="/posts" class="!border-none" :class="route.path === '/posts' ? activeStyle : inactiveStyle">
-        Blog
-      </RouterLink>
-      <RouterLink to="/talks" class="!border-none" :class="route.path === '/talks' ? activeStyle : inactiveStyle">
-        Talks
-      </RouterLink>
-      <RouterLink to="/podcasts" class="!border-none" :class="route.path === '/podcasts' ? activeStyle : inactiveStyle">
-        Podcasts
-      </RouterLink>
-      <RouterLink to="/streams" class="!border-none" :class="route.path === '/streams' ? activeStyle : inactiveStyle">
-        Streams
-      </RouterLink>
-      <RouterLink to="/notes" class="!border-none" :class="route.path === '/notes' ? activeStyle : inactiveStyle">
-        Notes
-      </RouterLink>
-    </div>
-  </div>
+    <RouterLink
+      to="/notes"
+      :class="linkClass('/notes')"
+      class="!border-none"
+      title="Notes"
+    >
+      Notes
+    </RouterLink>
+  </nav>
 </template>
