@@ -70,9 +70,13 @@ export default defineConfig({
     }),
 
     Markdown({
-      wrapperComponent: id => id.includes('/demo/')
-        ? 'WrapperDemo'
-        : 'WrapperPost',
+      wrapperComponent: (id) => {
+        if (id.includes('/pages/posts/'))
+          return
+        return id.includes('/demo/')
+          ? 'WrapperDemo'
+          : 'WrapperPost'
+      },
       wrapperClasses: (id, code) => code.includes('@layout-full-width')
         ? ''
         : 'prose m-auto slide-enter-content',
