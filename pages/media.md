@@ -1,7 +1,7 @@
 ---
-title: Media Consumption - Anthony Fu
+title: Media Consumption - Anshuman
 display: Media Consumption
-description: Anthony's Media Consumption
+description: ..
 ---
 
 One's life span is around 29,000 days, or 696,000 hours.

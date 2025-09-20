@@ -1,4 +1,19 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue' // or '@vueuse/head' if that's what your template uses
+
+const siteName = 'Anshuman'
+
+useHead({
+  titleTemplate: (title?: string) => {
+    if (!title)
+      return siteName
+    const t = title.trim()
+    if (t === '404')
+      return '404' // keep pure "404" with no suffix
+    return `${t} - ${siteName}`
+  },
+})
+
 const route = useRoute()
 
 const imageModel = ref<HTMLImageElement>()

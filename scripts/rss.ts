@@ -27,7 +27,6 @@ async function run() {
 
 async function buildBlogRSS() {
   const files = await fg('pages/posts/*.md')
-
   const options: FeedOptions = {
     title: 'Anshuman Agrawal',
     description: 'Notes, projects, and research logs',
@@ -80,9 +79,7 @@ async function writeFeed(name: string, options: FeedOptions, items: Item[]) {
   options.author = AUTHOR
   options.image = `${DOMAIN}/avatar.png` // ensure these exist in /public
   options.favicon = `${DOMAIN}/asquare_black.png`
-
   const feed = new Feed(options)
-
   items.forEach(item => feed.addItem(item))
 
   await fs.ensureDir(dirname(`./dist/${name}`))

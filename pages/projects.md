@@ -1,7 +1,7 @@
 ---
-title: Projects - Anthony Fu
+title: Projects - Anshuman
 display: Projects
-description: List of projects that I am proud of
+description: List of projects
 wrapperClass: 'text-center'
 art: plum
 projects:
