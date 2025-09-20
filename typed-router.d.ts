@@ -22,8 +22,15 @@ declare module 'vue-router/auto-routes' {
     '/[...404]': RouteRecordInfo<'/[...404]', '/:404(.*)', { 404: ParamValue<true> }, { 404: ParamValue<false> }>,
     '/media': RouteRecordInfo<'/media', '/media', Record<never, never>, Record<never, never>>,
     '/notes': RouteRecordInfo<'/notes', '/notes', Record<never, never>, Record<never, never>>,
-    '/posts': RouteRecordInfo<'/posts', '/posts', Record<never, never>, Record<never, never>, '/posts/my-post'>,
+    '/posts': RouteRecordInfo<'/posts', '/posts', Record<never, never>, Record<never, never>, '/posts/advice' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'>,
+    '/posts/advice': RouteRecordInfo<'/posts/advice', '/posts/advice', Record<never, never>, Record<never, never>>,
+    '/posts/life_worth_living': RouteRecordInfo<'/posts/life_worth_living', '/posts/life_worth_living', Record<never, never>, Record<never, never>>,
     '/posts/my-post': RouteRecordInfo<'/posts/my-post', '/posts/my-post', Record<never, never>, Record<never, never>>,
+    '/posts/python_cheatsheet': RouteRecordInfo<'/posts/python_cheatsheet', '/posts/python_cheatsheet', Record<never, never>, Record<never, never>>,
+    '/posts/quiet_war_of_focus': RouteRecordInfo<'/posts/quiet_war_of_focus', '/posts/quiet_war_of_focus', Record<never, never>, Record<never, never>>,
+    '/posts/self_love_01': RouteRecordInfo<'/posts/self_love_01', '/posts/self_love_01', Record<never, never>, Record<never, never>>,
+    '/posts/who_am_i': RouteRecordInfo<'/posts/who_am_i', '/posts/who_am_i', Record<never, never>, Record<never, never>>,
+    '/posts/wishful_thinking': RouteRecordInfo<'/posts/wishful_thinking', '/posts/wishful_thinking', Record<never, never>, Record<never, never>>,
     '/projects': RouteRecordInfo<'/projects', '/projects', Record<never, never>, Record<never, never>>,
   }
 
@@ -55,11 +62,39 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'pages/posts.md': {
-      routes: '/posts' | '/posts/my-post'
+      routes: '/posts' | '/posts/advice' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'
       views: 'default'
+    }
+    'pages/posts/advice.md': {
+      routes: '/posts/advice'
+      views: never
+    }
+    'pages/posts/life_worth_living.md': {
+      routes: '/posts/life_worth_living'
+      views: never
     }
     'pages/posts/my-post.md': {
       routes: '/posts/my-post'
+      views: never
+    }
+    'pages/posts/python_cheatsheet.md': {
+      routes: '/posts/python_cheatsheet'
+      views: never
+    }
+    'pages/posts/quiet_war_of_focus.md': {
+      routes: '/posts/quiet_war_of_focus'
+      views: never
+    }
+    'pages/posts/self_love_01.md': {
+      routes: '/posts/self_love_01'
+      views: never
+    }
+    'pages/posts/who_am_i.md': {
+      routes: '/posts/who_am_i'
+      views: never
+    }
+    'pages/posts/wishful_thinking.md': {
+      routes: '/posts/wishful_thinking'
       views: never
     }
     'pages/projects.md': {

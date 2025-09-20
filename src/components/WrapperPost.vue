@@ -38,6 +38,9 @@ onMounted(() => {
   ) => {
     const link = event.target.closest('a')
 
+    if (link && link.classList.contains('no-handle'))
+      return
+
     if (
       !event.defaultPrevented
       && link

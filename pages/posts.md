@@ -6,5 +6,7 @@ display: ''
 
 <SubNav />
 
-<!-- Lists all Markdown posts living under /pages/posts/* -->
-<ListPosts type="post" />
+<RouterView v-slot="{ Component }">
+  <component :is="Component" v-if="Component" />
+  <ListPosts v-else type="post" />
+</RouterView>
