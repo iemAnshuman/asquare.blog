@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Anshuman Agrawal</title>
+        <link>https://asquare.blog/</link>
+        <description>Notes, projects, and research logs</description>
+        <lastBuildDate>Sat, 20 Sep 2025 06:28:32 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>Anshuman Agrawal</title>
+            <url>https://asquare.blog/avatar.png</url>
+            <link>https://asquare.blog/</link>
+        </image>
+        <atom:link href="https://asquare.blog/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[My First Post]]></title>
+            <link>https://asquare.blog/posts/my-post</link>
+            <guid isPermaLink="true">https://asquare.blog/posts/my-post</guid>
+            <pubDate>Fri, 19 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Short teaser]]></description>
+            <content:encoded><![CDATA[<p>Content here…</p>
+]]></content:encoded>
+            <author>asquare567@gmail.com (Anshuman Agrawal)</author>
+        </item>
+    </channel>
+</rss>

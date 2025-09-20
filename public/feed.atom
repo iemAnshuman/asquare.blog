@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://asquare.blog/</id>
+    <title>Anshuman Agrawal</title>
+    <updated>2025-09-20T06:28:32.304Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Anshuman Agrawal</name>
+        <email>asquare567@gmail.com</email>
+        <uri>https://asquare.blog</uri>
+    </author>
+    <link rel="alternate" href="https://asquare.blog/"/>
+    <link rel="self" href="https://asquare.blog/feed.atom"/>
+    <subtitle>Notes, projects, and research logs</subtitle>
+    <logo>https://asquare.blog/avatar.png</logo>
+    <icon>https://asquare.blog/asquare_black.png</icon>
+    <entry>
+        <title type="html"><![CDATA[My First Post]]></title>
+        <id>https://asquare.blog/posts/my-post</id>
+        <link href="https://asquare.blog/posts/my-post"/>
+        <updated>2025-09-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Short teaser]]></summary>
+        <content type="html"><![CDATA[<p>Content here…</p>
+]]></content>
+        <author>
+            <name>Anshuman Agrawal</name>
+            <email>asquare567@gmail.com</email>
+            <uri>https://asquare.blog</uri>
+        </author>
+    </entry>
+</feed>

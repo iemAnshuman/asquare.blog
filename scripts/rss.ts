@@ -1,5 +1,5 @@
 import type { FeedOptions, Item } from 'feed'
-import { dirname } from 'node:path'
+import { join } from 'node:path'
 import fg from 'fast-glob'
 import { Feed } from 'feed'
 import fs from 'fs-extra'
@@ -27,6 +27,7 @@ async function run() {
 
 async function buildBlogRSS() {
   const files = await fg('pages/posts/*.md')
+
   const options: FeedOptions = {
     title: 'Anshuman Agrawal',
     description: 'Notes, projects, and research logs',
@@ -40,7 +41,7 @@ async function buildBlogRSS() {
     },
   }
 
-  const posts: any[] = (
+  const posts: Item[] = (
     await Promise.all(
       files
         .filter(i => !i.includes('index'))
@@ -48,29 +49,34 @@ async function buildBlogRSS() {
           const raw = await fs.readFile(i, 'utf-8')
           const { data, content } = matter(raw)
 
-          // keep only English posts; adjust if you publish multilingual content
-          if (data.lang && data.lang !== 'en')
+          // skip drafts and non-English posts (adjust as needed)
+          if (data?.draft)
+            return
+          if (data?.lang && data.lang !== 'en')
             return
 
           const html = markdown.render(content)
             // convert root-relative asset paths to absolute
             .replace(/src="\//g, `src="${DOMAIN}/`)
 
-          if (data.image?.startsWith('/'))
+          if (data?.image?.startsWith?.('/'))
             data.image = DOMAIN + data.image
+
+          // derive canonical link from file path: pages/posts/foo.md -> /posts/foo
+          const link = `${DOMAIN}${i.replace(/^pages(\/.+)\.md$/, '$1')}`
 
           return {
             ...data,
-            date: new Date(data.date),
+            date: data?.date ? new Date(data.date) : new Date(),
             content: html,
             author: [AUTHOR],
-            link: `${DOMAIN}${i.replace(/^pages(.+)\.md$/, '$1')}`,
-          }
+            link,
+          } as Item
         }),
     )
-  ).filter(Boolean)
+  ).filter(Boolean) as Item[]
 
-  posts.sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  posts.sort((a, b) => +new Date(b.date as any) - +new Date(a.date as any))
 
   await writeFeed('feed', options, posts)
 }
@@ -79,13 +85,15 @@ async function writeFeed(name: string, options: FeedOptions, items: Item[]) {
   options.author = AUTHOR
   options.image = `${DOMAIN}/avatar.png` // ensure these exist in /public
   options.favicon = `${DOMAIN}/asquare_black.png`
+
   const feed = new Feed(options)
   items.forEach(item => feed.addItem(item))
 
-  await fs.ensureDir(dirname(`./dist/${name}`))
-  await fs.writeFile(`./dist/${name}.xml`, feed.rss2(), 'utf-8')
-  await fs.writeFile(`./dist/${name}.atom`, feed.atom1(), 'utf-8')
-  await fs.writeFile(`./dist/${name}.json`, feed.json1(), 'utf-8')
+  // write into /public so Vite copies them into /dist
+  await fs.ensureDir('public')
+  await fs.writeFile(join('public', `${name}.xml`), feed.rss2(), 'utf-8')
+  await fs.writeFile(join('public', `${name}.atom`), feed.atom1(), 'utf-8')
+  await fs.writeFile(join('public', `${name}.json`), feed.json1(), 'utf-8')
 }
 
 run()

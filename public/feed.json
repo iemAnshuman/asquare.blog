@@ -1,0 +1,25 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Anshuman Agrawal",
+  "home_page_url": "https://asquare.blog/",
+  "feed_url": "https://asquare.blog/feed.json",
+  "description": "Notes, projects, and research logs",
+  "icon": "https://asquare.blog/avatar.png",
+  "author": {
+    "name": "Anshuman Agrawal",
+    "url": "https://asquare.blog"
+  },
+  "items": [
+    {
+      "content_html": "<p>Content here…</p>\n",
+      "url": "https://asquare.blog/posts/my-post",
+      "title": "My First Post",
+      "summary": "Short teaser",
+      "date_modified": "2025-09-19T00:00:00.000Z",
+      "author": {
+        "name": "Anshuman Agrawal",
+        "url": "https://asquare.blog"
+      }
+    }
+  ]
+}
