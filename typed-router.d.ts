@@ -22,8 +22,15 @@ declare module 'vue-router/auto-routes' {
     '/[...404]': RouteRecordInfo<'/[...404]', '/:404(.*)', { 404: ParamValue<true> }, { 404: ParamValue<false> }>,
     '/media': RouteRecordInfo<'/media', '/media', Record<never, never>, Record<never, never>>,
     '/notes': RouteRecordInfo<'/notes', '/notes', Record<never, never>, Record<never, never>>,
-    '/posts': RouteRecordInfo<'/posts', '/posts', Record<never, never>, Record<never, never>, '/posts/advice' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'>,
+    '/posts': RouteRecordInfo<'/posts', '/posts', Record<never, never>, Record<never, never>, '/posts/advice' | '/posts/ai101' | '/posts/ai102' | '/posts/ai102.5' | '/posts/ai103' | '/posts/ai103.5' | '/posts/ai104' | '/posts/ai105' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'>,
     '/posts/advice': RouteRecordInfo<'/posts/advice', '/posts/advice', Record<never, never>, Record<never, never>>,
+    '/posts/ai101': RouteRecordInfo<'/posts/ai101', '/posts/ai101', Record<never, never>, Record<never, never>>,
+    '/posts/ai102': RouteRecordInfo<'/posts/ai102', '/posts/ai102', Record<never, never>, Record<never, never>>,
+    '/posts/ai102.5': RouteRecordInfo<'/posts/ai102.5', '/posts/ai102/5', Record<never, never>, Record<never, never>>,
+    '/posts/ai103': RouteRecordInfo<'/posts/ai103', '/posts/ai103', Record<never, never>, Record<never, never>>,
+    '/posts/ai103.5': RouteRecordInfo<'/posts/ai103.5', '/posts/ai103/5', Record<never, never>, Record<never, never>>,
+    '/posts/ai104': RouteRecordInfo<'/posts/ai104', '/posts/ai104', Record<never, never>, Record<never, never>>,
+    '/posts/ai105': RouteRecordInfo<'/posts/ai105', '/posts/ai105', Record<never, never>, Record<never, never>>,
     '/posts/life_worth_living': RouteRecordInfo<'/posts/life_worth_living', '/posts/life_worth_living', Record<never, never>, Record<never, never>>,
     '/posts/my-post': RouteRecordInfo<'/posts/my-post', '/posts/my-post', Record<never, never>, Record<never, never>>,
     '/posts/python_cheatsheet': RouteRecordInfo<'/posts/python_cheatsheet', '/posts/python_cheatsheet', Record<never, never>, Record<never, never>>,
@@ -62,11 +69,39 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'pages/posts.md': {
-      routes: '/posts' | '/posts/advice' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'
+      routes: '/posts' | '/posts/advice' | '/posts/ai101' | '/posts/ai102' | '/posts/ai102.5' | '/posts/ai103' | '/posts/ai103.5' | '/posts/ai104' | '/posts/ai105' | '/posts/life_worth_living' | '/posts/my-post' | '/posts/python_cheatsheet' | '/posts/quiet_war_of_focus' | '/posts/self_love_01' | '/posts/who_am_i' | '/posts/wishful_thinking'
       views: 'default'
     }
     'pages/posts/advice.md': {
       routes: '/posts/advice'
+      views: never
+    }
+    'pages/posts/ai101.md': {
+      routes: '/posts/ai101'
+      views: never
+    }
+    'pages/posts/ai102.md': {
+      routes: '/posts/ai102'
+      views: never
+    }
+    'pages/posts/ai102.5.md': {
+      routes: '/posts/ai102.5'
+      views: never
+    }
+    'pages/posts/ai103.md': {
+      routes: '/posts/ai103'
+      views: never
+    }
+    'pages/posts/ai103.5.md': {
+      routes: '/posts/ai103.5'
+      views: never
+    }
+    'pages/posts/ai104.md': {
+      routes: '/posts/ai104'
+      views: never
+    }
+    'pages/posts/ai105.md': {
+      routes: '/posts/ai105'
       views: never
     }
     'pages/posts/life_worth_living.md': {
