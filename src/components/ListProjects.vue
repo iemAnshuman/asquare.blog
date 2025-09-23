@@ -14,7 +14,7 @@ function slug(name: string) {
     <div class="prose pb5 mx-auto mt10 text-center">
       <div flex="~ gap-2 justify-center">
         <a
-          href="https://github.com/antfu"
+          href="https://github.com/iemAnshuman"
           target="_blank"
           class="group btn-blue inline-block"
         >
@@ -23,28 +23,6 @@ function slug(name: string) {
             group-hover="i-ph-github-logo-fill text-blue"
           />
           GitHub
-        </a>
-        <a
-          href="https://releases.antfu.me"
-          target="_blank"
-          class="group btn-amber inline-block"
-        >
-          <div
-            i-ph-rocket-launch-duotone
-            group-hover="i-ph-rocket-launch-fill text-amber"
-          />
-          Recent Releases
-        </a>
-        <a
-          href="https://yak.antfu.me"
-          target="_blank"
-          class="group btn-lime inline-block"
-        >
-          <div
-            i-ph-cow-duotone
-            group-hover="i-ph-cow-duotone-fill text-lime"
-          />
-          Yak Map
         </a>
       </div>
       <hr>
@@ -64,7 +42,7 @@ function slug(name: string) {
         <span text-5em color-transparent absolute left--1rem top-0rem font-bold leading-1em text-stroke-1.5 text-stroke-hex-aaa op35 dark:op20>{{ key }}</span>
       </div>
       <div
-        class="project-grid py-2 max-w-500 w-max mx-auto"
+        class="project-grid py-2"
         grid="~ cols-1 md:cols-2 gap-4 lg:cols-3"
       >
         <a
@@ -94,9 +72,6 @@ function slug(name: string) {
       </div>
     </div>
     <div class="prose pb5 mx-auto mt10 text-center">
-      <div block mt-5>
-        <a href="https://antfu.me/stars-rank" target="_blank" op50>All projects sort by Stars</a>
-      </div>
       <hr>
     </div>
   </div>
@@ -118,7 +93,6 @@ function slug(name: string) {
 .project-grid a.item {
   background: transparent;
   font-size: 1.1rem;
-  width: 350px;
   max-width: 100%;
   padding: 0.5rem 0.875rem 0.875rem;
   border-radius: 6px;
