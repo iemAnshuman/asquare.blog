@@ -39,14 +39,14 @@
 
       <!-- Socials -->
       <a
-        href="https://bsky.app/profile/asquare567.bsky.social"
+        href="https://x.com/latentth0ughts?s=11"
         target="_blank"
         rel="noopener noreferrer"
-        title="Bluesky"
+        title="Twitter"
         class="lt-md:hidden"
-        aria-label="Bluesky"
+        aria-label="Twitter"
       >
-        <div i-ri-bluesky-line />
+        <div i-ri-twitter-x-line />
       </a>
       <a
         href="https://github.com/iemAnshuman"
