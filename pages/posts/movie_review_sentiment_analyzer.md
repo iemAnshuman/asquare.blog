@@ -46,6 +46,13 @@ classifcation models, because we are trying to classify
 
    -> LogisticRegression outperformed Multinomial NB here
 
+7. We can also save this model from RAM to local storage:
+   ```py
+   joblib.dump(model,"my_model.pkl")
+   model = joblib.load("my_model.pkl") # load again
+   ```
+   won't be doing this cuz don't want to store this stupid model
+
 ---
 
 #### links
