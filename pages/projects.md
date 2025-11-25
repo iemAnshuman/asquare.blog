@@ -1,33 +1,35 @@
 ---
 title: Projects - Anshuman
 display: Projects
-description: List of projects
+description: Research Experiments & Systems
 wrapperClass: 'text-center'
 art: plum
 projects:
-  Featured: # <--- Add this category key
-    - name: "asquare.blog"
-      link: "https://asquare.blog"
-      desc: "personal internet space"
-      icon:  "mdi-web"
-    - name: "neuro-ranker-distill"
-      link: "https://github.com/iemAnshuman/neuro-ranker-distill"
+  Research & Systems:
+    - name: "Sparse-Transformer-H100"
+      link: "https://github.com/iemAnshuman/reproduction-repo"
       desc: >
-        A distilled ranking system where a cross-encoder teacher trains a lightweight bi-encoder student for fast, high-quality retrieval.
-      icon:  "slidev"
-    - name: "Todoist CLI"
-      link: "https://github.com/iemAnshuman/todoist-cli"
-      desc: "A CLI tool to manage your Todoist tasks from the command line."
-      icon:  "vueuse"
+        Reproducibility study of sparse attention kernels on NVIDIA DGX H100. Achieved 1.5x throughput gain via custom INT8 quantization.
+      icon: "carbon:chart-network"
+
+    - name: "Neuro-Ranker"
+      link: "https://github.com/iemAnshuman/neuro-ranker-research"
+      desc: >
+        A high-performance dense retrieval system. Distilled Cross-Encoders into Bi-Encoders to achieve sub-10ms latency on CPU (18x compression).
+      icon: "carbon:machine-learning-model"
+
+    - name: "Neuro-Hedge"
+      link: "https://github.com/iemAnshuman/Neuro-Hedge"
+      desc: >
+        Deep RL agent for derivative pricing using Geometric Brownian Motion and Ornstein-Uhlenbeck exploration noise.
+      icon: "carbon:finance"
+
+  Engineering & Tools:
     - name: "EmotiTune"
       link: "https://github.com/iemAnshuman/EmotiTune"
       desc: >
-        An emotion-aware music companion that recommends songs based on your current mood.
-      icon:  "vue-reactivity"
-    - name: "Ration Management System"
-      link: "https://github.com/iemAnshuman/ration-management-system"
-      desc: "A system that helps you manage your ration"
-      icon:  "vue-demi"
+        Real-time audio inference pipeline using PyTorch CNNs and Librosa, deployed via Docker.
+      icon: "carbon:audio-console"
 ---
 
 <ListProjects :projects="frontmatter.projects" />
