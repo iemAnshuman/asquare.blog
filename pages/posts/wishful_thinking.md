@@ -1,6 +1,6 @@
 ---
 title: A list of things we forget about us
-date: 2025-08-10
+date: 2024-08-10
 type: post
 ---
 

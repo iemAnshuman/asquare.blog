@@ -1,6 +1,6 @@
 ---
 title: How not to hate yourself
-date: 2025-08-06
+date: 2024-08-06
 type: post
 ---
 
