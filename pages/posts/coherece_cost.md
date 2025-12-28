@@ -1,5 +1,5 @@
 ---
-title: The Unreasonable Cost of Coherence: A Deep Dive into GPU Memory Hierarchies
+title: "The Unreasonable Cost of Coherence: A Deep Dive into GPU Memory Hierarchies"
 date: 2025-12-28
 type: post
 ---
