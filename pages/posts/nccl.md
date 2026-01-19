@@ -1,78 +1,57 @@
 ---
-title: "It’s Just a Ring: Demystifying NCCL and Distributed Training"
-date: 2026-01-12
+title: "The 100-Hour Rule: How to Absorb a New Tech Stack"
+date: 2026-01-20
 type: post
 ---
 
-I used to treat `torch.nn.parallel.DistributedDataParallel` as a magic wrapper. You wrap your model, you spawn 8 processes, and suddenly your batch size is 8x bigger. Magic.
+I feel different than I did in November.
 
-But magic is just engineering you don't understand yet. And in systems, magic is dangerous. If you don't know how it works, you can't fix it when it stalls.
+I look at my GitHub contribution graph and it looks like a solid block of green (somewhat). I spent the last month living in the terminal, mostly with C++, Python, and Triton.
 
-I spent the weekend trying to understand how 8 GPUs agree on a single set of gradients without stopping the world.
+A friend asked me yesterday how I learned Triton so fast. "Did you find a good course?"
 
-### The Telephone Game
+I realized I didn't take a course. I didn't watch a YouTube playlist. I didn't look for a "roadmap."
 
-The naive assumption is that there is a "Master" GPU.
-GPU 1 calculates gradients $\to$ Sends to Master.
-GPU 2 calculates gradients $\to$ Sends to Master.
-Master averages them $\to$ Sends back.
+Roadmaps are procrastination (trust me). They are a way to feel like you are learning without doing the scary thing.
 
-This is the **Parameter Server** model. It works, but it has a flaw: The Master is a bottleneck. If you have 1000 GPUs, the Master melts. The bandwidth required scales linearly with $N$.
+### The Immersion Protocol
 
-The solution that NVIDIA uses (in NCCL) is so simple it feels like a toy algorithm.
+I have a theory (borrowed) that you can learn _anything_ in computer science in 100 hours if you do it right. But it has to be a specific kind of 100 hours.
 
-**It’s a Ring.**
+It can't be 1 hour a day for 100 days. That doesn't work. The context switching kills you. You spend 20 minutes remembering what you did yesterday, 20 minutes working, and 20 minutes checking your phone.
 
-GPU 0 talks _only_ to GPU 1.
-GPU 1 talks _only_ to GPU 2.
-...
-GPU N talks _only_ to GPU 0.
+It has to be **immersion**.
 
-circular linked list!
+For the last month, I did 10-12 hours a day.
 
-It’s a bucket brigade. It’s a game of telephone.
+When you do that, something strange happens to your brain around hour 40. You stop translating. You stop thinking "How do I do a for-loop in Triton?" and you just see the grid. The syntax fades away and you start thinking in the concepts of the system.
 
-### The Algorithm (All-Reduce)
+### Read the Source, Not the Docs
 
-To average the numbers, you don't send the whole model at once. You chop the data into chunks.
+The biggest mistake I used to make was reading documentation.
 
-1.  **Scatter-Reduce:** Everyone passes a chunk to their neighbor. As the chunk passes through, you add your own gradients to it. By the time the chunk makes a full circle, it contains the sum of everyone's work.
-2.  **All-Gather:** Now that the sum is calculated, you pass the _result_ around the ring so everyone has the final copy.
+Documentation is a sales pitch. It tells you how the tool is _supposed_ to work. It rarely tells you how it _actually_ works.
 
-The beauty of this is bandwidth. The amount of data sent by each GPU is constant. It doesn't matter if you have 4 GPUs or 4,000 GPUs. You only ever talk to your neighbor.
+When I was stuck on the Ring All-Reduce simulation, the docs were useless. They just said "synchronizes data." That means nothing.
 
-### Simulating the Metal
+So I opened the source code.
 
-I didn't believe it was that simple, so I wrote a simulation in Python. No PyTorch, no CUDA. Just lists and loops.
+It hurts at first. Reading other people's code is painful. It’s dense, it’s messy, it uses variable names you don't understand. It feels like staring into the sun.
 
-```python
-class Node:
-    def __init__(self, rank, value):
-        self.rank = rank
-        self.buffer = value
-        self.neighbor = None
+But if you stare _long long_ enough, your eyes adjust.
 
-    def step(self):
-        # pass to right
-        # receive from left
-        incoming = self.left_neighbor.buffer
-        self.buffer += incoming
+I learned more about GPU architecture by reading the OpenAI Triton compiler source code for 2 days than I did in 3 years of university classes.
 
-nodes = [Node(i, value=1) for i in range(4)]
-for i in range(4):
-    nodes[i].left_neighbor = nodes[(i - 1) % 4]
+### Build to Throw Away
 
-print(f"step 0: {[n.buffer for n in nodes]}")
-for step in range(3):
-    new_buffers = [n.left_neighbor.buffer + n.buffer for n in nodes]
-    for i, n in enumerate(nodes):
-        n.buffer = new_buffers[i]
-    print(f"step {step+1}: {[n.buffer for n in nodes]}")
+I wrote five different versions of my Softmax kernel. The first four were garbage. They segfaulted, they were slow, they were ugly.
+
+And I deleted them.
+
+That’s the other secret. You have to be willing to write code that you know you will throw away. (Imo throwing away your codes is really stress relieving, like throwing your burning rug instead of putting off fire kind of relief). You aren't building a product yet. You are building a mental model. The code is just the scaffolding for your understanding.
+
+I’m tired. My eyes hurt. I guess it's time for an existential crisis or just a burnout time. but atleast it feels great!
 
 ```
 
-When you see the numbers flow, the fear disappears.
-
-Distributed training isn't magic. It isn't even complicated math. It’s just a very organized, very fast game of pass-the-parcel.
-
-The bottleneck isn't the math. It’s the wire. It’s the speed of light between the boxes. That’s why we need InfiniBand. That’s why we need NVLink. Because when the algorithm is this efficient, the only thing slowing you down is physics.
+```
