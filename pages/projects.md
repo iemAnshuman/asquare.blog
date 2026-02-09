@@ -6,25 +6,25 @@ wrapperClass: 'text-center'
 art: plum
 projects:
   Research & Systems:
-    - name: "Sparse-Transformer-H100"
-      link: "https://github.com/iemAnshuman/reproduction-repo"
+    - name: "Triton 1.58"
+      link: "https://github.com/iemAnshuman/Triton_1.58"
       desc: >
-        Reproducibility study of sparse attention kernels on NVIDIA DGX H100. Achieved 1.5x throughput gain via custom INT8 quantization.
-      icon: "carbon:chart-network"
+        Custom inference engine for 1.58-bit models built with OpenAI Triton. Optimized for high-performance low-bit quantization.
+      icon: "carbon:chip"
 
+    - name: "HPC-DL"
+      link: "https://github.com/iemAnshuman/high-performance-deep-learning"
+      desc: >
+        Distributed training library and pipeline for model compression. Incorporates Neuro-Shrink logic for efficient scaling.
+      icon: "carbon:network-overlay"
+
+  Engineering & Tools:
     - name: "Neuro-Ranker"
       link: "https://github.com/iemAnshuman/neuro-ranker-research"
       desc: >
-        A high-performance dense retrieval system. Distilled Cross-Encoders into Bi-Encoders to achieve sub-10ms latency on CPU (18x compression).
+        A high-performance dense retrieval system (On-Device Search API). Distilled Cross-Encoders into Bi-Encoders for sub-10ms CPU latency.
       icon: "carbon:machine-learning-model"
 
-    - name: "Neuro-Hedge"
-      link: "https://github.com/iemAnshuman/Neuro-Hedge"
-      desc: >
-        Deep RL agent for derivative pricing using Geometric Brownian Motion and Ornstein-Uhlenbeck exploration noise.
-      icon: "carbon:finance"
-
-  Engineering & Tools:
     - name: "EmotiTune"
       link: "https://github.com/iemAnshuman/EmotiTune"
       desc: >
